@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
     worer1.vm.box = "rockylinux/9"
 
     #Hostname
-    worer1.vm.hostname = "master"
+    worer1.vm.hostname = "worker1"
 
     #Network
     worer1.vm.network "public_network", type: "dhcp"
