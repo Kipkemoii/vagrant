@@ -16,23 +16,32 @@ Vagrant.configure("2") do |config|
       v.cpus = 2
       v.memory = 2048
     end 
+
+    # default router
+    master.vm.provision "shell",
+    run: "always",
+    inline: "ip route del default via 10.0.2.2 || true"
   end
 
   config.vm.define "worker1" do |worer1|
     #Base image
-    worer1.vm.box = "rockylinux/9"
+    worker1.vm.box = "rockylinux/9"
 
     #Hostname
-    worer1.vm.hostname = "worker1"
+    worker1.vm.hostname = "worker1"
 
     #Network
-    worer1.vm.network "public_network", type: "dhcp"
+    worker1.vm.network "public_network", type: "dhcp"
 
     #Provider
-    worer1.vm.provider "virtualbox" do |v|
+    worker1.vm.provider "virtualbox" do |v|
       v.name = "worker1"
       v.cpus = 2
       v.memory = 2048
-    end 
+    end
+    # default router
+    worker1.vm.provision "shell",
+    run: "always",
+    inline: "ip route del default via 10.0.2.2 || true" 
   end
 end
